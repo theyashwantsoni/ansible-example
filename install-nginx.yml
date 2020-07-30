@@ -1,0 +1,17 @@
+- name: "Nginx playbook collection"
+  hosts: 127.0.0.1
+  connection: local
+
+  tasks:
+    - name: Install nginx web server
+      apt:
+        name: nginx
+        state: present
+        update_cache: false
+      notify:
+      - start nginx
+  handlers:
+    - name: start nginx
+      service:
+        name: nginx
+        state: started

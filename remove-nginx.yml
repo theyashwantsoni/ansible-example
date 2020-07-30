@@ -1,0 +1,20 @@
+- name: "Nginx playbook collection"
+  hosts: testhosts 
+  connection: local
+
+  tasks:
+    - name: Ensure nginx service is stopped
+      service:
+        name: nginx
+        state: stopped
+      ignore_errors: yes
+
+    - name: remove nginx web server
+      apt:
+        name: nginx
+        state: absent
+
+    - name: remove nginx-common package
+      apt:
+        name: nginx-common
+        state: absent
